@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F5F3FA">
+<meta name="description" content="연구대회 네 번의 AI 융합수업을 여섯 가지 렌즈와 세 번의 의사결정으로 살펴보는 연수 자료">
 <title>AI 수업 렌즈 탐험</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,6 +215,7 @@ body{padding-inline:0}
 .switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
 .cs{padding:9px 18px;border-radius:99px;background:var(--surface);box-shadow:0 2px 10px rgba(80,60,140,.08);font-size:15px}
 .cs b{font-family:var(--display);font-weight:400;font-size:17px;margin-right:6px}
+@media(max-width:600px){.cs{padding:8px 13px;font-size:14px}.cs b{font-size:15px;margin-right:4px}}
 .cs[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
 
 /* ---- 부드러운 움직임 ---- */
@@ -238,12 +246,132 @@ body{padding-inline:0}
 .crowd .cr.pres .bar i{background:var(--l4i)}
 .crowd .cr span:last-child{text-align:right;color:var(--muted)}
 .crowd .note,.anon{font-size:12.5px;color:var(--muted)}
+
+/* ===== 페이지·내용 전환 ===== */
+.page.enter,.swap{animation:pageIn .38s cubic-bezier(.2,.7,.2,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* ===== 진행 표시 ===== */
+.prog{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:18px;font-size:14px;color:var(--muted)}
+.prog .pg{display:inline-flex;align-items:center;gap:6px}
+.prog b{color:var(--fg);font-weight:700;margin-right:2px}
+.prog .dot{width:12px;height:12px;border-radius:50%;background:var(--line);display:inline-block;transition:background .5s,transform .5s}
+.prog .dot.on{transform:scale(1.12)}
+.prog a{color:var(--accent);font-weight:700;text-decoration:none}
+.motif .mc.unseen circle{fill-opacity:.42}
+.motif .mc.unseen:hover circle,.motif .mc.unseen:focus-visible circle{fill-opacity:.75}
+/* ===== 사진 ===== */
+.tile .cover{display:block;margin:-22px -22px 10px;height:150px;border-radius:30px 30px 0 0;overflow:hidden;background:rgba(255,255,255,.45)}
+.tile .cover img{width:100%;height:100%;object-fit:cover;display:block}
+.stage .ph{margin:-14px -14px 8px;aspect-ratio:16/11;border-radius:18px 18px 0 0;overflow:hidden;background:var(--line);padding:0;display:block;width:calc(100% + 28px)}
+.stage .ph img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:transform .3s}
+.stage .ph:hover img{transform:scale(1.04)}
+.proj .pc{font-size:12px;color:var(--accent);font-weight:700}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(20,18,30,.82);display:grid;place-items:center;padding:16px}
+.lb[hidden]{display:none}
+.lb figure{margin:0;max-width:min(960px,100%);display:grid;gap:10px;justify-items:center}
+.lb img{max-width:100%;max-height:78vh;border-radius:16px;object-fit:contain;background:#fff}
+.lb figcaption{color:#fff;font-size:15px;text-align:center}
+.lb button{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;background:#fff;color:#2A2838;border-radius:99px;padding:8px 16px;font-weight:700}
+/* ===== 한눈 비교 ===== */
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:6px}
+@media(max-width:860px){.roles{grid-template-columns:1fr;gap:26px}}
+.role{border-radius:26px;padding:20px;display:grid;gap:6px;align-content:start;position:relative;min-width:0}
+.role .ry{font-family:var(--display);font-size:30px;line-height:1}
+.role .rp{font-weight:700;font-size:14px}
+.role .rk{font-size:12px;letter-spacing:.04em;opacity:.8;margin-top:8px;font-weight:700}
+.role .rv2{font-family:var(--display);font-size:21px;line-height:1.35}
+.role .re{font-size:13.5px;opacity:.92;margin-top:4px}
+.role:not(:last-child)::after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted)}
+@media(max-width:860px){.role:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-25px;transform:translateX(-50%)}}
+.roles.mini .re{display:none}
+.askline{margin-top:18px;background:var(--surface);border-radius:20px;padding:14px 18px;font-family:var(--display);font-size:18px;box-shadow:0 4px 18px rgba(80,60,140,.07)}
+.cmpchips{display:flex;flex-wrap:wrap;gap:8px}
+.cmpchips button{padding:8px 16px;border-radius:99px;background:var(--surface);box-shadow:0 2px 10px rgba(80,60,140,.08);font-size:14px}
+.cmpchips button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+#cmpBody,.block>*{min-width:0}
+.cmpwrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:22px;background:var(--surface);box-shadow:0 4px 18px rgba(80,60,140,.07)}
+table.cmptbl{border-collapse:separate;border-spacing:0;min-width:820px;width:100%;font-size:14px;line-height:1.6}
+.cmptbl th,.cmptbl td{padding:12px 14px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line)}
+.cmptbl tr:last-child th,.cmptbl tr:last-child td{border-bottom:0}
+.cmptbl thead th{font-weight:400}
+.cmptbl thead th button{text-align:left;display:grid;gap:2px}
+.cmptbl thead th b{font-family:var(--display);font-size:20px;font-weight:400}
+.cmptbl thead th small{color:var(--accent);font-weight:700;font-size:12px}
+.cmptbl th[scope=row]{position:sticky;left:0;background:var(--surface);min-width:92px;z-index:1;font-weight:700}
+.cmptbl th[scope=row] span{display:inline-block;padding:2px 10px;border-radius:99px}
+.cmpcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cmpcards div{border-radius:20px;padding:16px}
+.cmpcards b{display:block;font-family:var(--display);font-weight:400;font-size:18px;margin-bottom:4px}
+.cmpq{font-family:var(--display);font-size:19px}
+.scrollhint{font-size:12.5px;color:var(--muted)}
+@media(min-width:900px){.scrollhint{display:none}}
+/* ===== 강사용 실시간 결과 ===== */
+#live{max-width:1440px}
+.livehead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 20px;flex-wrap:wrap;margin-top:22px}
+.livehead h1{font-size:clamp(28px,4.2vw,50px)}
+.livemeta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:15px;color:var(--muted)}
+.livemeta .on{display:inline-flex;align-items:center;gap:6px}
+.livemeta .on::before{content:"";width:9px;height:9px;border-radius:50%;background:#3BB273;animation:blink 2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.livebtns{display:flex;gap:8px;flex-wrap:wrap}
+.livebtns .btn{padding:9px 16px;font-size:14px}
+.demo-tag{display:inline-block;background:var(--l4);color:var(--l4i);border-radius:99px;padding:3px 12px;font-weight:700;font-size:13px}
+.livegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+@media(max-width:1000px){.livegrid{grid-template-columns:1fr}}
+.lv{background:var(--surface);border-radius:28px;padding:22px;display:grid;gap:12px;align-content:start;box-shadow:0 4px 18px rgba(80,60,140,.07);min-width:0}
+.lv .lk{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.lv h2{font-size:clamp(20px,2vw,26px)}
+.lv .ln{font-size:14px;color:var(--muted)}
+.lbar{display:grid;grid-template-columns:30px 1fr auto;gap:4px 10px;align-items:center}
+.lbar>b{font-family:var(--display);font-size:24px;font-weight:400}
+.lbar .track{height:28px;border-radius:10px;background:var(--soft);overflow:hidden;position:relative}
+.lbar .track i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);opacity:.55;border-radius:10px;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.lbar.top .track i{opacity:1}
+.lbar .num{font-size:19px;font-weight:700;min-width:96px;text-align:right;font-variant-numeric:tabular-nums}
+.lbar .num small{font-size:13px;color:var(--muted);font-weight:400;margin-left:4px}
+.lbar .ot{grid-column:2/4;font-size:13px;color:var(--muted);line-height:1.45}
+.lbar .ot em{font-style:normal;color:var(--l4i);background:var(--l4);border-radius:99px;padding:0 8px;margin-left:6px;font-size:12px;font-weight:700}
+.reasons{display:grid;gap:8px;max-height:300px;overflow:auto;padding-right:2px}
+.reasons div{background:var(--soft);border-radius:14px;padding:9px 12px;font-size:15px;line-height:1.55;animation:pageIn .5s}
+.reasons i{font-style:normal;font-family:var(--display);margin-right:8px;color:var(--accent)}
+.reasons .none{background:none;color:var(--muted);font-size:14px;padding:0}
+.liveempty{margin-top:22px;background:var(--surface);border-radius:28px;padding:28px;display:grid;gap:12px;max-width:720px}
+.liveempty ol{margin:0;padding-left:20px;display:grid;gap:4px}
+body.livemode .sitefoot{display:none}
+#live:fullscreen{background:var(--bg);overflow:auto;padding:28px;max-width:none}
+#live:fullscreen .lv h2{font-size:28px}
+/* ===== 이유 공유 동의 ===== */
+.share{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--fg);cursor:pointer}
+.share input{margin-top:5px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.share span{color:var(--muted);display:block;font-size:12.5px}
+.crowd .rs{display:grid;gap:6px;margin-top:4px}
+.crowd .rs div{background:var(--soft);border-radius:12px;padding:6px 10px;font-size:13.5px}
+.crowd .rs i{font-style:normal;color:var(--accent);margin-right:6px;font-family:var(--display)}
+/* ===== 카드 이미지 ===== */
+.cardimg{display:grid;gap:10px;justify-items:start}
+.cardimg img{width:min(100%,380px);border-radius:16px;box-shadow:0 8px 26px rgba(80,60,140,.16)}
+.cardimg .muted{font-size:13px}
+@media (prefers-reduced-motion:reduce){.page.enter,.swap,.reasons div{animation:none}.livemeta .on::before{animation:none}}
+.hero2 .btn.ghost{background:var(--surface)}
+/* ===== 휴대폰 ===== */
+@media(max-width:600px){
+  .site-in{padding:8px 12px;gap:6px}
+  .brand small{display:none}
+  .menu{gap:2px;width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{padding:6px 11px;font-size:14px;white-space:nowrap;flex:none}
+  .hero2{border-radius:28px}
+  .tile .ty{font-size:38px}
+  .lbar .num{min-width:78px;font-size:17px}
+}
 </style>
+</head>
+<body>
 
 <header class="site"><div class="site-in">
   <a class="brand" href="#home" data-route="home"><svg class="mk" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="13" r="10" style="fill:var(--l1)" fill-opacity=".9"/><circle cx="13" cy="25" r="10" style="fill:var(--l2)" fill-opacity=".9"/><circle cx="27" cy="25" r="10" style="fill:var(--l4)" fill-opacity=".9"/></svg><span><b>AI 수업 렌즈</b><small>우수사례 탐험</small></span></a>
   <nav class="menu" aria-label="주 메뉴">
-    <a href="#home" data-route="home">홈</a><a href="#ch1" data-route="ch1">사례 탐색</a><a href="#ch2" data-route="ch2">의사결정</a><a href="#ch3" data-route="ch3">내 카드</a>
+    <a href="#home" data-route="home">홈</a><a href="#ch1" data-route="ch1">사례 탐색</a><a href="#compare" data-route="compare">한눈 비교</a><a href="#ch2" data-route="ch2">의사결정</a><a href="#ch3" data-route="ch3">내 카드</a>
   </nav>
 </div></header>
 
@@ -254,6 +382,7 @@ body{padding-inline:0}
       <h1>AI에게<br>어디까지 맡길까?</h1>
       <p class="lead2">연구대회 4년, 네 번의 수업에서 운영한 16개 프로젝트를 둘러보고, 여섯 가지 렌즈로 읽고, 수업 중 마주친 세 번의 선택에서 나라면 어떻게 할지 먼저 정해 봅니다.</p>
       <div class="cta"><button class="btn" data-route="ch1">사례 둘러보기</button><button class="btn ghost" data-route="ch2">의사결정 해보기</button><button class="btn ghost" data-route="ch3">내 카드·문서 받기</button></div>
+      <div class="prog" id="prog" aria-live="polite"></div>
     </div>
     <div class="motifwrap"><svg class="motif" viewBox="0 0 420 420" role="img" aria-label="여섯 가지 렌즈: 교육적, 학습자, 기술적, 평가, 윤리적, 실행이 겹쳐진 그림">
 <g font-family="'Gowun Dodum','Noto Sans KR',sans-serif" font-size="17" text-anchor="middle">
@@ -271,6 +400,12 @@ body{padding-inline:0}
   <section class="hs" id="hCases">
     <div class="hs-h"><div class="step">사례 고르기</div><h2>어떤 수업부터 살펴볼까요?</h2><p>사례를 누르면 그 수업의 프로젝트 4개, 렌즈 분석, 이야기 나눌 거리를 볼 수 있습니다.</p></div>
     <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="hs" id="hRoles">
+    <div class="hs-h"><div class="step">한눈에 보기</div><h2>네 수업, AI의 자리는 어떻게 달라졌을까요?</h2><p>해마다 AI가 수업에서 맡은 역할과 학생이 선 자리를 한 줄로 이었습니다.</p></div>
+    <div class="roles mini" id="homeRoles"></div>
+    <div style="margin-top:16px"><button class="btn ghost" data-route="compare">렌즈별 비교표까지 보기</button></div>
   </section>
 
   <section class="hs" id="hLens">
@@ -318,7 +453,7 @@ body{padding-inline:0}
     <div class="step">5단계 · 함께 이야기 나누기</div>
     <div class="card" id="reflBox"></div>
   </div>
-  <button class="btn next" data-route="ch2">2장 의사결정 지점으로 이동</button>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px"><button class="btn" data-route="ch2" style="margin:0">2장 의사결정 지점으로 이동</button><button class="btn ghost" data-route="compare" style="margin:0">네 사례 한눈 비교</button></div>
 
 </main>
 
@@ -331,7 +466,7 @@ body{padding-inline:0}
   <div style="margin-top:18px">
   <div class="tabs" id="dpNav"></div>
   <div class="card" id="dpBox" aria-live="polite" style="margin-top:12px"></div>
-  <button class="btn next" data-route="ch3">3장 내 카드 만들기로 이동</button>
+  <button class="btn next" data-route="ch3" style="margin-top:18px">3장 내 카드 만들기로 이동</button>
 
 
   </div>
@@ -341,7 +476,8 @@ body{padding-inline:0}
   <div class="pagehead">
     <div class="crumb"><a href="#home" data-route="home">홈</a> › 3장 내 카드</div>
     <h1>내 카드 만들기</h1>
-    <p>1장에서 남긴 렌즈 메모와 2장에서 고른 선택이 여기에 모입니다. 조건을 적어 카드를 완성하고, 전체 자료와 함께 문서로 가져가세요.</p>
+    <p>1장에서 남긴 렌즈 메모와 2장에서 고른 선택이 여기에 모입니다. 조건을 적어 카드를 완성하고, 이미지나 문서로 가져가세요.</p>
+    <div class="prog" id="prog3"></div>
   </div>
   <div class="block" id="cardSec">
     <div class="step">내 수업에 가져오려면</div>
@@ -364,9 +500,35 @@ body{padding-inline:0}
   </div>
 </main>
 
+<main id="compare" class="page" hidden>
+  <div class="pagehead">
+    <div class="crumb"><a href="#home" data-route="home">홈</a> › 한눈 비교</div>
+    <h1>네 수업, 한눈에 비교하기</h1>
+    <p>2023년부터 2026년까지 네 번의 수업을 나란히 놓았습니다. 위에서 AI의 자리 변화를 보고, 아래 표에서 렌즈별로 비교해 보세요.</p>
+  </div>
+  <div class="block">
+    <div class="step">AI의 자리는 이렇게 달라졌어요</div>
+    <div class="roles" id="cmpRoles"></div>
+    <div class="askline">선생님 수업에서 AI는 지금 어느 자리에 있나요? 학생은 어디에 서 있나요?</div>
+  </div>
+  <div class="block">
+    <div class="step">렌즈별로 비교하기</div>
+    <div class="cmpchips" id="cmpChips" role="group" aria-label="비교 기준 선택"></div>
+    <div id="cmpBody" aria-live="polite"></div>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px"><button class="btn" data-route="ch2" style="margin:0">2장 의사결정 지점으로 이동</button><button class="btn ghost" data-route="ch1" style="margin:0">사례 자세히 보기</button></div>
+</main>
+
+<main id="live" class="page" hidden>
+  <div class="crumb" style="margin-top:20px"><a href="#home" data-route="home">홈</a> › 강사용 실시간 결과</div>
+  <div id="liveBody"></div>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="사진 크게 보기"><button type="button" id="lbClose">닫기</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure></div>
+
 <footer class="sitefoot">
   <div><b>AI 수업 렌즈</b>AI 융합수업 실천 사례 공유 · 사례 발표 2 · 강사 고지현</div>
-  <div><a href="#home" data-route="home">홈</a><a href="#ch1" data-route="ch1">사례 탐색</a><a href="#ch2" data-route="ch2">의사결정</a><a href="#ch3" data-route="ch3">내 카드</a><br><span id="footNote">기록은 이 기기의 브라우저에만 저장됩니다.</span> 내용 출처: 17·18·20회 연구보고서, 2025 수업혁신사례연구대회 보고서.</div>
+  <div><a href="#home" data-route="home">홈</a><a href="#ch1" data-route="ch1">사례 탐색</a><a href="#compare" data-route="compare">한눈 비교</a><a href="#ch2" data-route="ch2">의사결정</a><a href="#ch3" data-route="ch3">내 카드</a><a href="#live" data-route="live">강사용 결과 화면</a><br><span id="footNote">기록은 이 기기의 브라우저에만 저장됩니다.</span> 내용 출처: 17·18·20회 연구보고서, 2025 수업혁신사례연구대회 보고서.</div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
@@ -525,13 +687,19 @@ const save=()=>{try{localStorage.setItem("aiLens2",JSON.stringify(ST))}catch(e){
 let justRevealed=false;let curCase=ST.case||"c20",curLens=ST.lens||"edu",curProj=0,curDp=0;
 const caseObj=()=>CASES.find(c=>c.id===curCase);
 
-const ROUTES=["home","ch1","ch2","ch3"];let curRoute="home";
+const ROUTES=["home","ch1","compare","ch2","ch3","live"];const PAGES=ROUTES;
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function pop(...els){if(RM)return;els.forEach(el=>{if(!el)return;el.classList.remove("swap");void el.offsetWidth;el.classList.add("swap")})}let curRoute="home";
 function go(name,anchor,fromHash){
   if(name==="card")name="ch3";
   if(!ROUTES.includes(name))name="home";
+  const changed=curRoute!==name;
   curRoute=name;
   const page=name;
-  ["home","ch1","ch2","ch3"].forEach(id=>{$("#"+id).hidden=id!==page});
+  PAGES.forEach(id=>{const el=$("#"+id);el.hidden=id!==page;if(id===page&&changed&&!RM){el.classList.remove("enter");void el.offsetWidth;el.classList.add("enter")}});
+  document.body.classList.toggle("livemode",name==="live");
+  if(name==="live")startLive();else stopLive();
+  if(name==="compare")drawCompare();
   document.querySelectorAll(".menu a").forEach(a=>{const r=a.dataset.route;a.setAttribute("aria-current",r===name?"page":"false")});
   if(!fromHash){try{location.hash=name}catch(e){}}
   const target=anchor;
@@ -545,14 +713,14 @@ document.addEventListener("click",e=>{
 window.addEventListener("hashchange",()=>{const n=location.hash.slice(1);if(n&&n!==curRoute&&n!=="card")go(n,null,true)});
 function drawCases(){
   $("#switch").innerHTML=CASES.map(c=>`<button class="cs" aria-pressed="${c.id===curCase}" data-id="${c.id}"><b>${c.yr}</b>${c.pj}</button>`).join("");
-  document.querySelectorAll(".cs").forEach(b=>b.onclick=()=>{curCase=b.dataset.id;ST.case=curCase;curProj=0;save();drawAll()});
+  document.querySelectorAll(".cs").forEach(b=>b.onclick=()=>{curCase=b.dataset.id;ST.case=curCase;curProj=0;save();drawAll();pop($("#b-over"),$("#b-proj"),$("#b-lens"),$("#b-refl"))});
 }
 const TILE={c17:3,c18:1,c25:4,c20:2};
 function drawHome(){
-  $("#tiles").innerHTML=CASES.map(c=>{const n=TILE[c.id];return `<button class="tile" style="background:var(--l${n});color:var(--l${n}i)" data-id="${c.id}"><span class="ty">${c.yr}</span><span class="tn2">${c.nm}</span><span class="tp">${c.pj}</span><span class="tsub">${c.sub}</span><span class="tlist">프로젝트 4개<br>${c.projs.map(p=>esc(p.n)).join(" · ")}</span><span class="go">살펴보기 →</span></button>`}).join("");
+  $("#tiles").innerHTML=CASES.map(c=>{const n=TILE[c.id];return `<button class="tile" style="background:var(--l${n});color:var(--l${n}i)" data-id="${c.id}"><span class="cover"><img src="img/cover-${c.id}.jpg" alt="${esc(c.pj)} 수업 장면" loading="lazy" width="600" height="450"></span><span class="ty">${c.yr}</span><span class="tn2">${c.nm}</span><span class="tp">${c.pj}</span><span class="tsub">${c.sub}</span><span class="tlist">프로젝트 4개<br>${c.projs.map(p=>esc(p.n)).join(" · ")}</span><span class="go">살펴보기 →</span></button>`}).join("");
   document.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{curCase=b.dataset.id;ST.case=curCase;curProj=0;save();drawAll();go("ch1")});
   $("#homeLens").innerHTML=LENSES.map(l=>`<button class="lbtn" style="${lensStyle(l.c)}" data-id="${l.id}"><b>${l.n}</b><span>${l.q}</span></button>`).join("");
-  document.querySelectorAll("#homeLens .lbtn").forEach(b=>b.onclick=()=>{curLens=b.dataset.id;ST.lens=curLens;save();drawAll();go("ch1","b-lens")});
+  document.querySelectorAll("#homeLens .lbtn").forEach(b=>b.onclick=()=>{curLens=b.dataset.id;ST.lens=curLens;markSeen(curLens);save();drawAll();go("ch1","b-lens")});
   $("#homeDp").innerHTML=DP.map((d,i)=>`<button class="dpcard" data-i="${i}"><span class="dn">${i+1}</span><span class="dk">${d.k}</span><span class="dt">${d.t}</span><span class="ds">${d.sit}</span></button>`).join("");
   document.querySelectorAll(".dpcard").forEach(b=>b.onclick=()=>{curDp=+b.dataset.i;drawDp();go("ch2")});
 }
@@ -565,13 +733,13 @@ function drawOver(){
 }
 function drawProjs(){
   const c=caseObj();
-  $("#projs").innerHTML=c.projs.map((p,i)=>`<button class="proj" data-i="${i}" aria-pressed="${i===curProj}"><span class="pn">${esc(p.n)}</span><span class="ps">${esc(p.sub)}</span>${p.tag?`<span class="pt">${esc(p.tag)}</span>`:""}</button>`).join("");
-  document.querySelectorAll(".proj").forEach(b=>b.onclick=()=>{curProj=+b.dataset.i;drawProjs()});
+  $("#projs").innerHTML=c.projs.map((p,i)=>`<button class="proj" data-i="${i}" aria-pressed="${i===curProj}"><span class="pn">${esc(p.n)}</span><span class="ps">${esc(p.sub)}</span>${p.tag?`<span class="pt">${esc(p.tag)}</span>`:""}${hasPhotos(c.id,i)?`<span class="pc">수업 사진 있음</span>`:""}</button>`).join("");
+  document.querySelectorAll(".proj").forEach(b=>b.onclick=()=>{curProj=+b.dataset.i;drawProjs();pop($("#projDetail"))});
   const p=c.projs[curProj];
   const list=(a)=>`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
   let h=`<div class="intro"><div class="eyebrow">${esc(c.pj)} · 프로젝트 ${curProj+1}</div><h3 style="font-size:22px">${esc(p.n)}</h3><p>${esc(p.intro)}</p></div>
   <div><b class="bh">프로젝트 흐름</b></div>
-  <div class="stages">${p.st.map(s=>`<div class="stage"><span class="L">${s.l}</span><span class="t">${esc(s.t)}</span>${s.q?`<span class="q">${esc(s.q)}</span>`:""}<span class="d">${esc(s.a)}</span><span class="tools">${esc(s.tl)}</span></div>`).join("")}</div>`;
+  <div class="stages">${p.st.map((s,si)=>`<div class="stage">${photoTag(c.id,curProj,si,p.n+" · "+s.l+" "+s.t+": "+s.a)}<span class="L">${s.l}</span><span class="t">${esc(s.t)}</span>${s.q?`<span class="q">${esc(s.q)}</span>`:""}<span class="d">${esc(s.a)}</span><span class="tools">${esc(s.tl)}</span></div>`).join("")}</div>`;
   const notes=[];
   if(p.kid&&p.kid.length)notes.push(`<div class="note kid"><b>학생들의 마음</b>${list(p.kid)}</div>`);
   if(p.tch&&p.tch.length)notes.push(`<div class="note tch"><b>교사의 자기 성찰</b>${list(p.tch)}</div>`);
@@ -583,7 +751,7 @@ function drawProjs(){
 function drawLens(){
   const c=caseObj();
   $("#lensPick").innerHTML=LENSES.map(l=>`<button class="lbtn" style="${lensStyle(l.c)}" aria-pressed="${l.id===curLens}" data-id="${l.id}"><b>${l.n}</b><span>${l.q}</span></button>`).join("");
-  document.querySelectorAll(".lbtn").forEach(b=>b.onclick=()=>{curLens=b.dataset.id;ST.lens=curLens;save();drawLens()});
+  document.querySelectorAll("#lensPick .lbtn").forEach(b=>b.onclick=()=>{curLens=b.dataset.id;ST.lens=curLens;markSeen(curLens);save();drawLens();pop($("#lensBox"))});
   const l=LENSES.find(x=>x.id===curLens);
   const others=CASES.filter(x=>x.id!==c.id);
   $("#lensBox").innerHTML=`<div class="eyebrow">${c.yr} ${c.pj} · ${l.n} 렌즈</div><div class="lensq">${l.q}</div>
@@ -600,7 +768,7 @@ function drawRefl(){
   <label class="f" for="talkmemo">우리 교실에서는? 떠오른 생각을 적어 보세요<textarea id="talkmemo" rows="3" placeholder="이야기 나누며 떠오른 우리 교실의 모습"></textarea></label>`;
   const m=$("#talkmemo"),key=c.id+":talk";m.value=ST.memo[key]||"";m.oninput=()=>{ST.memo[key]=m.value;save()};
 }
-function drawAll(){drawHome();revealWatch();drawCases();drawOver();drawProjs();drawLens();drawRefl();drawSummary()}
+function drawAll(){drawHome();revealWatch();drawCases();drawOver();drawProjs();drawLens();drawRefl();drawSummary();drawRoles("#homeRoles",true);if(curRoute==="compare")drawCompare()}
 
 /* ---------- 연수 의견 모아 보기 (구글 앱스 스크립트 웹 앱 주소를 넣으면 켜집니다) ---------- */
 const SURVEY_URL="";
@@ -609,39 +777,41 @@ let pendingSend=Promise.resolve();
 function sendChoice(i){
   if(!SURVEY_URL)return;
   const s=ST.dp[i];
-  pendingSend=fetch(SURVEY_URL,{method:"POST",body:JSON.stringify({point:DP[i].k,choice:"ABCD"[s.pick],sid:SID})}).catch(()=>{});
+  const why=(ST.shareWhy!==false&&s.why)?String(s.why).slice(0,80):"";
+  pendingSend=fetch(SURVEY_URL,{method:"POST",body:JSON.stringify({point:DP[i].k,choice:"ABCD"[s.pick],sid:SID,why})}).catch(()=>{});
 }
-async function fetchCounts(){
-  const r=await fetch(SURVEY_URL);const j=await r.json();return j&&j.ok?j.counts:null;
+async function fetchSurvey(){
+  const r=await fetch(SURVEY_URL+(SURVEY_URL.indexOf("?")<0?"?":"&")+"t="+Date.now());const j=await r.json();return j&&j.ok?j:null;
 }
 let crowdTimer=null;
 function drawCrowd(i){
   const box=$("#crowd");if(!box)return;
   clearInterval(crowdTimer);
   const d=DP[i];
-  const paint=c=>{
-    const row=c&&c[d.k];if(!row)return;
+  const paint=j=>{
+    const row=j&&j.counts&&j.counts[d.k];if(!row)return;
+    const rs=((j.reasons&&j.reasons[d.k])||[]).slice(0,3);
     const n=["A","B","C","D"].reduce((a,k)=>a+row[k],0);
-    box.innerHTML=`<h4>다른 선생님들의 선택</h4>`+["A","B","C","D"].map((k,j)=>{const pc=n?Math.round(row[k]/n*100):0;return `<div class="cr${j===d.pick?" pres":""}"><b>${k}</b><div class="bar"><i style="width:${pc}%"></i></div><span>${row[k]}명 · ${pc}%</span></div>`}).join("")+`<div class="note">지금까지 ${n}명이 선택했어요. 이름은 받지 않고 선택 번호만 익명으로 모읍니다.</div>`;
+    box.innerHTML=`<h4>다른 선생님들의 선택</h4>`+["A","B","C","D"].map((k,j)=>{const pc=n?Math.round(row[k]/n*100):0;return `<div class="cr${j===d.pick?" pres":""}"><b>${k}</b><div class="bar"><i style="width:${pc}%"></i></div><span>${row[k]}명 · ${pc}%</span></div>`}).join("")+`${rs.length?`<div class="rs">${rs.map(r=>`<div><i>${esc(r.c)}</i>${esc(r.t)}</div>`).join("")}</div>`:""}<div class="note">지금까지 ${n}명이 선택했어요. 이름은 받지 않고 익명으로 모읍니다.</div>`;
     box.querySelectorAll(".bar i").forEach(e=>{const w=e.style.width;e.style.width="0";requestAnimationFrame(()=>requestAnimationFrame(()=>e.style.width=w))});
   };
   box.textContent="불러오는 중...";
-  const load=()=>fetchCounts().then(paint).catch(()=>{if(!box.querySelector(".cr"))box.textContent="집계를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."});
+  const load=()=>fetchSurvey().then(paint).catch(()=>{if(!box.querySelector(".cr"))box.textContent="집계를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."});
   pendingSend.then(load);
   crowdTimer=setInterval(()=>{if(!$("#crowd")){clearInterval(crowdTimer);return}load()},10000);
 }
-if(SURVEY_URL){const fn=$("#footNote");if(fn)fn.textContent="메모와 카드는 이 기기에만 저장되고, 2장의 선택(A~D)만 익명으로 집계됩니다."}
+if(SURVEY_URL){const fn=$("#footNote");if(fn)fn.textContent="메모와 카드는 이 기기에만 저장되고, 2장의 선택(A~D)과 공유에 동의한 이유만 익명으로 집계됩니다."}
 
 function drawDp(){
   $("#dpNav").innerHTML=DP.map((d,i)=>`<button class="tab" aria-pressed="${i===curDp}" data-i="${i}">${i+1}. ${d.k}${ST.dp[i]&&ST.dp[i].done?" ✓":""}</button>`).join("");
-  document.querySelectorAll("#dpNav .tab").forEach(b=>b.onclick=()=>{curDp=+b.dataset.i;drawDp()});
+  document.querySelectorAll("#dpNav .tab").forEach(b=>b.onclick=()=>{curDp=+b.dataset.i;drawDp();pop($("#dpBox"))});
   const d=DP[curDp],s=ST.dp[curDp]||{pick:null,why:"",done:false};ST.dp[curDp]=s;
   const fresh=justRevealed;justRevealed=false;
   let h=`<div><div class="eyebrow">의사결정 지점 ${curDp+1} · ${d.k}</div><h3 style="font-size:24px">${d.t}</h3></div>
   <div class="sit"><b>상황</b>${d.sit}<div class="muted" style="margin-top:6px">${d.eg}</div></div>
   <div><b style="font-size:14px">나라면 어떻게 선택할까?</b></div>
   <div class="opts">${d.opts.map((o,i)=>`<button class="opt${s.done&&i===d.pick?" pres":""}${s.done&&i===d.pick&&s.pick===d.pick?" mine":""}" aria-pressed="${s.pick===i}" data-i="${i}" ${s.done?"disabled":""}><i>${"ABCD"[i]}</i><span>${o}</span>${s.done&&i===d.pick?`<span class="tag">발표자의 선택${s.pick===i?" · 같음":""}</span>`:""}</button>`).join("")}</div>
-  <label class="f" for="why">선택한 이유를 한 줄로<input type="text" id="why" placeholder="우리 교실이라면..." ${s.done?"disabled":""}></label>`;
+  <label class="f" for="why">선택한 이유를 한 줄로<input type="text" id="why" maxlength="80" placeholder="우리 교실이라면..." ${s.done?"disabled":""}></label>${SURVEY_URL&&!s.done?`<label class="share"><input type="checkbox" id="shareWhy" ${ST.shareWhy!==false?"checked":""}><div>이유도 이름 없이 함께 공유하기<span>체크하면 강의 화면의 「선택한 이유」 목록에 익명으로 보일 수 있어요.</span></div></label>`:""}`;
   if(!s.done)h+=`<button class="btn" id="go" ${s.pick==null?"disabled":""}>발표자의 선택 확인하기</button>${SURVEY_URL?`<div class="anon">선택은 익명으로 집계됩니다. 이름이나 개인 정보는 받지 않아요.</div>`:""}`;
   else{
     h+=`<div class="reveal${fresh?" fresh":""}"><h3>발표자의 선택: ${"ABCD"[d.pick]}. ${d.opts[d.pick]}</h3>
@@ -655,6 +825,7 @@ function drawDp(){
   $("#dpBox").innerHTML=h;
   if(s.done&&SURVEY_URL)drawCrowd(curDp);
   const w=$("#why");w.value=s.why||"";w.oninput=()=>{s.why=w.value;save()};
+  const sw=$("#shareWhy");if(sw)sw.onchange=()=>{ST.shareWhy=sw.checked;save()};
   document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{s.pick=+b.dataset.i;save();drawDp()});
   const go=$("#go");if(go)go.onclick=()=>{s.done=true;justRevealed=true;save();sendChoice(curDp);drawDp();drawSummary();const r=document.querySelector(".reveal");if(r)r.scrollIntoView({behavior:"smooth",block:"nearest"})};
   const rd=$("#redo");if(rd)rd.onclick=()=>{s.done=false;save();drawDp();drawSummary()};
@@ -667,7 +838,9 @@ function drawSummary(){
   const rows=[["내가 본 렌즈",memos.length?memos.join("<br>"):"아직 없음 · 1장 렌즈 단계에서 메모를 남겨 보세요"],
     ["나의 선택",dps.length?dps.map(esc).join("<br>"):"아직 없음 · 2장에서 세 곳의 선택을 해 보세요"],
     ...cond.map(c=>[c[0],ST.cond[c[1]]?esc(ST.cond[c[1]]):"아직 없음"])];
-  $("#summary").innerHTML=`<div class="eyebrow">나의 렌즈 · 선택 요약</div><h3>AI 융합수업, 내 교실로 가져가기</h3>`+rows.map(r=>`<div class="srow"><b>${r[0]}</b><div>${r[1]}</div></div>`).join("")+`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn" id="copy">텍스트로 복사</button><span class="toast" id="toast"></span></div>`;
+  $("#summary").innerHTML=`<div class="eyebrow">나의 렌즈 · 선택 요약</div><h3>AI 융합수업, 내 교실로 가져가기</h3>`+rows.map(r=>`<div class="srow"><b>${r[0]}</b><div>${r[1]}</div></div>`).join("")+`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn" id="copy">텍스트로 복사</button><button class="btn ghost" id="mkImg">카드 이미지 만들기</button><span class="toast" id="toast"></span></div><div class="cardimg" id="cardImg"></div>`;
+  $("#mkImg").onclick=makeCardImage;
+  drawProgress();
   $("#copy").onclick=()=>{
     const t=["[AI 융합수업 · 나의 렌즈와 선택]",...rows.map(r=>r[0]+": "+r[1].replace(/<br>/g," / ").replace(/<[^>]+>/g,""))].join("\n");
     const ok=()=>$("#toast").textContent="복사했습니다. 문서에 붙여넣으세요.";
@@ -772,7 +945,7 @@ function docxBlob(){
 })();
 ["c1","c2","c3"].forEach(id=>{const e=$("#"+id);e.value=ST.cond[id]||"";e.oninput=()=>{ST.cond[id]=e.value;save();drawSummary()}});
 /* 홈 렌즈 그림: 설명 + 이동 */
-function lensGo(id){curLens=id;ST.lens=id;save();drawAll();go("ch1","b-lens")}
+function lensGo(id){curLens=id;ST.lens=id;markSeen(id);save();drawAll();go("ch1","b-lens")}
 document.querySelectorAll(".motif .mc").forEach(g=>{
   const l=LENSES.find(x=>x.id===g.dataset.lens),cap=$("#motifCap"),def="원을 누르면 그 렌즈로 바로 읽어 볼 수 있어요";
   g.setAttribute("aria-label",l.n+" 렌즈로 읽기");
@@ -792,6 +965,172 @@ function revealWatch(){
   });
 }
 
-drawAll();drawDp();revealWatch();
-{const h0=location.hash.slice(1);go(ROUTES.includes(h0)||h0==="card"?h0:"home",null,true)}
+/* ===================== 사진 ===================== */
+const PHOTOS=new Set(["c17-2-0","c17-2-1","c17-2-2","c17-2-3","c18-0-0","c18-0-1","c18-0-2","c18-0-3","c25-2-0","c25-2-1","c25-2-2","c25-2-3","c20-0-0","c20-0-1","c20-0-3","c20-1-0","c20-1-1","c20-1-2","c20-1-3","c20-2-0","c20-2-1","c20-2-2","c20-2-3","c20-3-0","c20-3-1","c20-3-3"]);
+function hasPhotos(cid,pi){for(let k=0;k<4;k++)if(PHOTOS.has(`${cid}-${pi}-${k}`))return true;return false}
+function photoTag(cid,pi,si,cap){const k=`${cid}-${pi}-${si}`;if(!PHOTOS.has(k))return "";return `<button type="button" class="ph" data-src="img/${k}.jpg" data-cap="${esc(cap)}" aria-label="사진 크게 보기: ${esc(cap)}"><img src="img/${k}.jpg" alt="${esc(cap)}" loading="lazy"></button>`}
+document.addEventListener("click",e=>{const b=e.target.closest(".ph");if(!b)return;$("#lbImg").src=b.dataset.src;$("#lbImg").alt=b.dataset.cap;$("#lbCap").textContent=b.dataset.cap;$("#lb").hidden=false;$("#lbClose").focus()});
+function lbClose(){$("#lb").hidden=true;$("#lbImg").removeAttribute("src")}
+$("#lbClose").onclick=lbClose;$("#lb").addEventListener("click",e=>{if(e.target.id==="lb")lbClose()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#lb").hidden)lbClose()});
+
+/* ===================== 진행 표시 ===================== */
+ST.seen=ST.seen||{};
+function markSeen(id){if(!ST.seen[id]){ST.seen[id]=1;save();drawProgress()}}
+function drawProgress(){
+  const nL=LENSES.filter(l=>ST.seen[l.id]).length,nD=DP.filter((d,i)=>ST.dp[i]&&ST.dp[i].done).length;
+  const dots=LENSES.map(l=>`<span class="dot${ST.seen[l.id]?" on":""}" title="${l.n}" style="${ST.seen[l.id]?`background:var(--l${l.c}i)`:""}"></span>`).join("");
+  const dd=DP.map((d,i)=>`<span class="dot${ST.dp[i]&&ST.dp[i].done?" on":""}" title="${d.k}" style="${ST.dp[i]&&ST.dp[i].done?"background:var(--accent)":""}"></span>`).join("");
+  const done=nL>0&&nD===3;
+  const h=`<span class="pg">렌즈 <b>${nL}/6</b>${dots}</span><span class="pg">선택 <b>${nD}/3</b>${dd}</span>${done?`<a href="#ch3" data-route="ch3">내 카드 완성하기 →</a>`:""}`;
+  ["#prog","#prog3"].forEach(sel=>{const el=$(sel);if(el)el.innerHTML=h});
+  document.querySelectorAll(".motif .mc").forEach(g=>g.classList.toggle("unseen",!ST.seen[g.dataset.lens]));
+}
+if("IntersectionObserver" in window){
+  const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&curRoute==="ch1")markSeen(curLens)}),{threshold:.5});
+  lio.observe($("#lensBox"));
+}
+
+/* ===================== 한눈 비교 ===================== */
+const ROLE={
+ c17:{ai:"직접 만들어 보는 대상",st:"AI를 만드는 사람",ev:"엔트리로 고운말 판독기·그린 AI를 직접 학습시켜 만들고, 잘못 학습한 AI의 오류를 겪어 봄"},
+ c18:{ai:"대화 상대",st:"질문하는 사람",ev:"챗봇과 대화하며 질문을 만들고, 질문에 따라 답이 달라진다는 것을 학생이 먼저 알아챔"},
+ c25:{ai:"필요할 때만 나오는 조연",st:"읽고 만드는 사람",ev:"책 속 갈등에서 질문이 나오고, AI는 작가 인터뷰처럼 필요한 장면에만 들어옴"},
+ c20:{ai:"따져 보고 비교할 대상",st:"최종 판단자",ev:"AI 요약을 책과 대조해 고치고, AI 판결과 인간의 판단을 나란히 비교함"}};
+function drawRoles(sel,mini){
+  const el=$(sel);if(!el)return;
+  el.innerHTML=CASES.map(c=>{const r=ROLE[c.id],n=TILE[c.id];return `<div class="role" style="background:var(--l${n});color:var(--l${n}i)"><span class="ry">${c.yr}</span><span class="rp">${c.nm} · ${c.pj}</span><span class="rk">AI의 자리</span><span class="rv2">${r.ai}</span><span class="rk">학생의 자리</span><span class="rv2" style="font-size:18px">${r.st}</span><span class="re">${r.ev}</span></div>`}).join("");
+}
+let cmpSel="all";
+function drawCompare(){
+  drawRoles("#cmpRoles",false);
+  $("#cmpChips").innerHTML=`<button aria-pressed="${cmpSel==="all"}" data-k="all">전체 표</button>`+LENSES.map(l=>`<button aria-pressed="${cmpSel===l.id}" data-k="${l.id}">${l.n}</button>`).join("");
+  document.querySelectorAll("#cmpChips button").forEach(b=>b.onclick=()=>{cmpSel=b.dataset.k;drawCompare();pop($("#cmpBody"))});
+  if(cmpSel==="all"){
+    const head=`<tr><th scope="col" style="position:sticky;left:0;background:var(--surface);z-index:2"></th>${CASES.map(c=>`<th scope="col"><button type="button" data-case="${c.id}"><small>${c.yr} · ${c.nm}</small><b>${c.pj}</b><small>자세히 보기 →</small></button></th>`).join("")}</tr>`;
+    const facts=[["학년·교과",c=>c.grade],["수업 단계",c=>c.fw.map(f=>f[0]+" "+f[1]).join(" → ")],["프로젝트",c=>c.projs.map(p=>p.n).join(" · ")],["주요 AI·도구",c=>c.tools]];
+    const rows=facts.map(f=>`<tr><th scope="row">${f[0]}</th>${CASES.map(c=>`<td>${esc(f[1](c))}</td>`).join("")}</tr>`).join("")+
+      LENSES.map(l=>`<tr><th scope="row"><span style="${lensStyle(l.c)}">${l.n}</span></th>${CASES.map(c=>`<td>${esc(c.lens[l.id])}</td>`).join("")}</tr>`).join("");
+    $("#cmpBody").innerHTML=`<div class="scrollhint">표를 옆으로 밀어서 네 사례를 모두 볼 수 있어요.</div><div class="cmpwrap"><table class="cmptbl"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+    document.querySelectorAll("#cmpBody [data-case]").forEach(b=>b.onclick=()=>{curCase=b.dataset.case;ST.case=curCase;curProj=0;save();drawAll();go("ch1")});
+  }else{
+    const l=LENSES.find(x=>x.id===cmpSel);
+    $("#cmpBody").innerHTML=`<div class="card"><div class="cmpq">${l.n} 렌즈 · ${l.q}</div><div class="cmpcards">${CASES.map(c=>`<div style="${lensStyle(l.c)}"><b>${c.yr} · ${c.pj}</b>${esc(c.lens[l.id])}</div>`).join("")}</div></div>`;
+    markSeen(l.id);
+  }
+}
+
+/* ===================== 강사용 실시간 결과 ===================== */
+let liveTimer=null,liveDemo=false,demo=null,liveBuilt=false;
+function startLive(){stopLive();liveBuilt=false;renderLive();liveTimer=setInterval(renderLive,10000)}
+function stopLive(){clearInterval(liveTimer);liveTimer=null}
+function demoData(){
+  const pool={도구:["우리 반은 동의서 받는 데 시간이 걸려서 시연이 현실적","직접 써 봐야 한계를 알 것 같음","저학년이라 다른 도구가 안전함"],
+    결과:["오류를 찾는 과정 자체가 배움","시간이 부족하면 교사가 먼저 걸러 줘야 함","대조할 자료를 미리 준비해야 할 듯"],
+    역할:["대본은 아이들 생각이 담겨야 함","글쓰기가 어려운 학생은 AI 도움이 필요","수정만 맡기면 생각이 지켜짐"]};
+  if(!demo){demo={counts:{},reasons:{}};DP.forEach(d=>{demo.counts[d.k]={A:2,B:5,C:1,D:0};demo.reasons[d.k]=[]})}
+  DP.forEach(d=>{const k="ABCD"[Math.random()<.5?1:Math.floor(Math.random()*4)];demo.counts[d.k][k]++;
+    if(Math.random()<.6){const t=pool[d.k][Math.floor(Math.random()*3)];demo.reasons[d.k].unshift({c:k,t});demo.reasons[d.k]=demo.reasons[d.k].slice(0,12)}});
+  const people=Math.max(...DP.map(d=>Object.values(demo.counts[d.k]).reduce((a,b)=>a+b,0)));
+  return {ok:true,counts:JSON.parse(JSON.stringify(demo.counts)),reasons:JSON.parse(JSON.stringify(demo.reasons)),people};
+}
+function liveSkeleton(){
+  $("#liveBody").innerHTML=`<div class="livehead"><div><div class="eyebrow">2장 의사결정 · 연수 현장 결과 ${liveDemo&&!SURVEY_URL?`<span class="demo-tag">예시 데이터</span>`:""}</div><h1>지금 선생님들의 선택</h1></div>
+   <div style="display:grid;gap:8px;justify-items:end"><div class="livemeta"><span class="on">10초마다 자동 갱신</span><span id="lvPeople"></span><span id="lvTime"></span></div>
+   <div class="livebtns"><button class="btn ghost" id="lvRefresh">지금 새로고침</button><button class="btn ghost" id="lvFull">전체 화면</button>${liveDemo&&!SURVEY_URL?`<button class="btn ghost" id="lvDemoOff">예시 끄기</button>`:""}</div></div></div>
+   <div class="livegrid">${DP.map((d,i)=>`<section class="lv" id="lv${i}"><div class="lk">${i+1} · ${d.k}</div><h2>${d.t}</h2><div class="ln" id="lvN${i}"></div>
+     ${["A","B","C","D"].map((k,j)=>`<div class="lbar${j===d.pick?" pres":""}" id="lvB${i}${k}"><b>${k}</b><div class="track"><i></i></div><span class="num">0명</span><span class="ot">${esc(d.opts[j])}${j===d.pick?"<em>발표자</em>":""}</span></div>`).join("")}
+     <div class="lk" style="margin-top:6px">선택한 이유</div><div class="reasons" id="lvR${i}"></div></section>`).join("")}</div>`;
+  $("#lvRefresh").onclick=renderLive;
+  $("#lvFull").onclick=()=>{const el=$("#live");if(document.fullscreenElement)document.exitFullscreen();else if(el.requestFullscreen)el.requestFullscreen().catch(()=>{})};
+  const off=$("#lvDemoOff");if(off)off.onclick=()=>{liveDemo=false;demo=null;liveBuilt=false;renderLive()};
+  liveBuilt=true;
+}
+function liveSetup(){
+  $("#liveBody").innerHTML=`<div class="liveempty"><h1 style="font-size:32px">강사용 실시간 결과 화면</h1>
+   <p>연수생이 2장에서 고른 선택과 이유를 큰 화면에 모아 보여 주는 곳입니다. 아직 구글 시트가 연결되지 않았어요.</p>
+   <ol><li>응답 시트에 앱스 스크립트를 붙여 웹 앱으로 배포</li><li>웹 앱 주소를 index.html의 SURVEY_URL에 넣기</li><li>강의 때 이 화면을 띄우고 '전체 화면'</li></ol>
+   <div><button class="btn" id="lvDemo">예시 데이터로 미리 보기</button></div><p class="muted" style="font-size:13px">예시 데이터는 화면 확인용이며 어디에도 저장되지 않습니다.</p></div>`;
+  $("#lvDemo").onclick=()=>{liveDemo=true;liveBuilt=false;renderLive()};
+}
+async function renderLive(){
+  if(curRoute!=="live")return;
+  if(!SURVEY_URL&&!liveDemo){liveSetup();return}
+  if(!liveBuilt)liveSkeleton();
+  let j=null;
+  try{j=SURVEY_URL?await fetchSurvey():demoData()}catch(e){j=null}
+  if(!j){$("#lvTime").textContent="불러오지 못했어요 · 잠시 후 다시 시도";return}
+  $("#lvTime").textContent="마지막 갱신 "+new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+  $("#lvPeople").textContent="참여 "+(j.people||0)+"명";
+  DP.forEach((d,i)=>{
+    const row=(j.counts&&j.counts[d.k])||{A:0,B:0,C:0,D:0};
+    const n=["A","B","C","D"].reduce((a,k)=>a+(row[k]||0),0),max=Math.max(...["A","B","C","D"].map(k=>row[k]||0));
+    $("#lvN"+i).textContent=n?`${n}명이 선택했어요`:"아직 선택이 없어요";
+    ["A","B","C","D"].forEach(k=>{const el=$("#lvB"+i+k),v=row[k]||0,pc=n?Math.round(v/n*100):0;
+      el.querySelector("i").style.width=pc+"%";el.querySelector(".num").innerHTML=`${v}명<small>${pc}%</small>`;el.classList.toggle("top",n>0&&v===max)});
+    const rs=(j.reasons&&j.reasons[d.k])||[];
+    const box=$("#lvR"+i),sig=rs.slice(0,8).map(r=>r.c+r.t).join("|");
+    if(box.dataset.sig===undefined||sig!==box.dataset.sig){box.dataset.sig=sig;box.innerHTML=rs.length?rs.slice(0,8).map(r=>`<div><i>${esc(r.c)}</i>${esc(r.t)}</div>`).join(""):`<div class="none">공유된 이유가 아직 없어요.</div>`}
+  });
+}
+
+/* ===================== 내 카드 이미지 ===================== */
+async function makeCardImage(){
+  const out=$("#cardImg");out.innerHTML=`<span class="muted">이미지를 만드는 중...</span>`;
+  try{await Promise.all([document.fonts.load('700 28px "Noto Sans KR"'),document.fonts.load('400 28px "Noto Sans KR"'),document.fonts.load('40px "Gowun Dodum"')])}catch(e){}
+  const C={bg:"#F5F3FA",sf:"#FFFFFF",fg:"#2A2838",mu:"#6B6880",ac:"#7C6BD6",soft:"#ECE8F6",
+    l:["#DCE7FA","#FBE3EA","#DDF1E6","#FDF0D3","#EADFF7","#D9F0F2"],li:["#2F4A7D","#8A3550","#2D6A4A","#7A5A12","#5B3F8C","#2A6670"]};
+  const FB='"Noto Sans KR",sans-serif',FD='"Gowun Dodum","Noto Sans KR",sans-serif';
+  const W=1080,P=72,IW=W-P*2-56;
+  const cv=document.createElement("canvas"),x=cv.getContext("2d");
+  const wrap=(t,font,maxW)=>{x.font=font;const out=[];String(t).split("\n").forEach(para=>{let line="";for(const ch of para){const tt=line+ch;if(x.measureText(tt).width>maxW&&line){out.push(line.trimEnd());line=ch===" "?"":ch}else line=tt}out.push(line)});return out};
+  const memos=[];CASES.forEach(c=>LENSES.forEach(l=>{const v=(ST.memo[c.id+":"+l.id]||"").trim();if(v)memos.push({h:`${c.yr} ${c.pj} · ${l.n}`,t:v.length>110?v.slice(0,110)+"…":v,ci:l.c-1})}));
+  const sections=[
+    {k:"내가 본 렌즈",items:memos.length?memos.slice(0,5).concat(memos.length>5?[{h:"",t:`외 ${memos.length-5}개 메모`}]:[]):[{h:"",t:"아직 남긴 메모가 없어요"}]},
+    {k:"나의 선택",items:DP.map((d,i)=>{const s=ST.dp[i];return s&&s.done?{h:`${d.k} · ${"ABCD"[s.pick]}`,t:d.opts[s.pick]+(s.why?`\n이유: ${s.why}`:"")}:{h:d.k,t:"아직 고르지 않았어요"}})},
+    {k:"내 교실 조건",items:[["시간 · 기기","c1"],["학생 수준","c2"],["지원 인력 · 사고 과정","c3"]].map(c=>({h:c[0],t:(ST.cond[c[1]]||"").trim()||"(아직 적지 않았어요)"}))}];
+  const layout=draw=>{
+    let y=P;
+    // 렌즈 그림
+    const cx=W-P-80,cy=P+70,R=34,O=[[0,-1],[.87,-.5],[.87,.5],[0,1],[-.87,.5],[-.87,-.5]];
+    if(draw){LENSES.forEach((l,i)=>{x.globalAlpha=ST.seen[l.id]?.95:.3;x.fillStyle=C.l[l.c-1];x.beginPath();x.arc(cx+O[i][0]*R,cy+O[i][1]*R,R,0,7);x.fill()});x.globalAlpha=1;x.fillStyle=C.sf;x.beginPath();x.arc(cx,cy,20,0,7);x.fill()}
+    if(draw){x.fillStyle=C.ac;x.font=`700 24px ${FB}`;x.fillText("AI 융합수업 · 나의 렌즈와 선택",P,y+24)}
+    y+=50;
+    wrap("AI 융합수업,\n내 교실로 가져가기",`56px ${FD}`,W-P*2-200).forEach(t=>{if(draw){x.fillStyle=C.fg;x.font=`56px ${FD}`;x.fillText(t,P,y+56)}y+=72});
+    if(draw){x.fillStyle=C.mu;x.font=`24px ${FB}`;x.fillText(new Date().toLocaleDateString("ko-KR")+" · 렌즈 "+LENSES.filter(l=>ST.seen[l.id]).length+"/6 · 선택 "+DP.filter((d,i)=>ST.dp[i]&&ST.dp[i].done).length+"/3",P,y+30)}
+    y+=64;
+    sections.forEach(sec=>{
+      const top=y;let h=28+44;
+      const lines=sec.items.map(it=>({hl:it.h?wrap(it.h,`700 26px ${FB}`,IW):[],tl:wrap(it.t,`26px ${FB}`,IW),ci:it.ci}));
+      lines.forEach(L=>{h+=L.hl.length*38+L.tl.length*40+18});
+      h+=10;
+      if(draw){x.fillStyle=C.sf;rr(P,top,W-P*2,h,28);x.fill();x.fillStyle=C.ac;x.font=`700 26px ${FB}`;x.fillText(sec.k,P+28,top+28+26)}
+      let yy=top+28+44+10;
+      lines.forEach(L=>{
+        L.hl.forEach(t=>{if(draw){x.fillStyle=L.ci!=null?C.li[L.ci]:C.fg;x.font=`700 26px ${FB}`;x.fillText(t,P+28,yy+26)}yy+=38});
+        L.tl.forEach(t=>{if(draw){x.fillStyle=C.fg;x.font=`26px ${FB}`;x.fillText(t,P+28,yy+26)}yy+=40});
+        yy+=18});
+      y=top+h+24;
+    });
+    if(draw){x.fillStyle=C.mu;x.font=`22px ${FB}`;x.fillText("AI 수업 렌즈 · AIEDAP 마스터교원 연수 · aiedap-lens.vercel.app",P,y+30)}
+    y+=30+P-20;
+    return y;
+  };
+  function rr(a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+  cv.width=W;cv.height=10;const H=layout(false);cv.height=Math.ceil(H);
+  x.fillStyle=C.bg;x.fillRect(0,0,W,cv.height);layout(true);
+  cv.toBlob(blob=>{
+    if(!blob){out.innerHTML=`<span class="muted">이미지를 만들지 못했어요. 텍스트 복사를 이용해 주세요.</span>`;return}
+    const url=URL.createObjectURL(blob),fn="AI수업렌즈_나의카드.png";
+    const file=window.File?new File([blob],fn,{type:"image/png"}):null;
+    const canShare=!!(file&&navigator.canShare&&navigator.canShare({files:[file]}));
+    out.innerHTML=`<img src="${url}" alt="나의 렌즈와 선택 요약 카드 이미지"><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="${url}" download="${fn}" style="text-decoration:none">이미지 저장</a>${canShare?`<button class="btn ghost" id="shImg">공유하기</button>`:""}</div><span class="muted">휴대폰에서는 이미지를 길게 눌러 저장할 수도 있어요.</span>`;
+    const sh=$("#shImg");if(sh)sh.onclick=()=>navigator.share({files:[file],title:"나의 렌즈와 선택"}).catch(()=>{});
+  },"image/png");
+}
+
+drawAll();drawDp();revealWatch();drawProgress();
+{const h0=location.hash.slice(1);curRoute="";go(ROUTES.includes(h0)||h0==="card"?h0:"home",null,true)}
 </script>
+</body>
+</html>
