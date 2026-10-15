@@ -770,18 +770,21 @@ function drawRefl(){
 }
 function drawAll(){drawHome();revealWatch();drawCases();drawOver();drawProjs();drawLens();drawRefl();drawSummary();drawRoles("#homeRoles",true);if(curRoute==="compare")drawCompare()}
 
-/* ---------- 연수 의견 모아 보기 (구글 앱스 스크립트 웹 앱 주소를 넣으면 켜집니다) ---------- */
-const SURVEY_URL="";
+/* ---------- 연수 의견 모아 보기 (Supabase: votes 테이블 + submit_vote / vote_summary 함수) ---------- */
+const SB_URL="https://anwzedtbanoowgpelmjt.supabase.co";
+const SB_KEY="sb_publishable_FkASk1QV-M6on1ZkRcsX3w_mHZq4cnZ"; // 공개용 키: 표는 직접 읽고 쓸 수 없고, 두 함수만 부를 수 있음
+const SURVEY_URL=SB_URL?SB_URL+"/rest/v1/rpc/":"";
+const sbCall=(fn,body)=>fetch(SURVEY_URL+fn,{method:"POST",headers:{"apikey":SB_KEY,"Content-Type":"application/json"},body:JSON.stringify(body||{})});
 const SID=(()=>{try{let v=localStorage.getItem("aiLensSid");if(!v){v="u-"+Math.random().toString(36).slice(2,10);localStorage.setItem("aiLensSid",v)}return v}catch(e){return "u-"+Math.random().toString(36).slice(2,10)}})();
 let pendingSend=Promise.resolve();
 function sendChoice(i){
   if(!SURVEY_URL)return;
   const s=ST.dp[i];
   const why=(ST.shareWhy!==false&&s.why)?String(s.why).slice(0,80):"";
-  pendingSend=fetch(SURVEY_URL,{method:"POST",body:JSON.stringify({point:DP[i].k,choice:"ABCD"[s.pick],sid:SID,why})}).catch(()=>{});
+  pendingSend=sbCall("submit_vote",{p_point:DP[i].k,p_choice:"ABCD"[s.pick],p_sid:SID,p_why:why}).catch(()=>{});
 }
 async function fetchSurvey(){
-  const r=await fetch(SURVEY_URL+(SURVEY_URL.indexOf("?")<0?"?":"&")+"t="+Date.now());const j=await r.json();return j&&j.ok?j:null;
+  const r=await sbCall("vote_summary");if(!r.ok)return null;const j=await r.json();return j&&j.ok?j:null;
 }
 let crowdTimer=null;
 function drawCrowd(i){
@@ -1049,7 +1052,7 @@ function liveSkeleton(){
 function liveSetup(){
   $("#liveBody").innerHTML=`<div class="liveempty"><h1 style="font-size:32px">강사용 실시간 결과 화면</h1>
    <p>연수생이 2장에서 고른 선택과 이유를 큰 화면에 모아 보여 주는 곳입니다. 아직 구글 시트가 연결되지 않았어요.</p>
-   <ol><li>응답 시트에 앱스 스크립트를 붙여 웹 앱으로 배포</li><li>웹 앱 주소를 index.html의 SURVEY_URL에 넣기</li><li>강의 때 이 화면을 띄우고 '전체 화면'</li></ol>
+   <ol><li>Supabase 주소와 공개 키를 index.html의 SB_URL·SB_KEY에 넣기</li><li>다시 배포</li><li>강의 때 이 화면을 띄우고 '전체 화면'</li></ol>
    <div><button class="btn" id="lvDemo">예시 데이터로 미리 보기</button></div><p class="muted" style="font-size:13px">예시 데이터는 화면 확인용이며 어디에도 저장되지 않습니다.</p></div>`;
   $("#lvDemo").onclick=()=>{liveDemo=true;liveBuilt=false;renderLive()};
 }
