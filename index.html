@@ -969,7 +969,7 @@ function revealWatch(){
 }
 
 /* ===================== 사진 ===================== */
-const PHOTOS=new Set(["c17-2-0","c17-2-1","c17-2-2","c17-2-3","c18-0-0","c18-0-1","c18-0-2","c18-0-3","c25-2-0","c25-2-1","c25-2-2","c25-2-3","c20-0-0","c20-0-1","c20-0-3","c20-1-0","c20-1-1","c20-1-2","c20-1-3","c20-2-0","c20-2-1","c20-2-2","c20-2-3","c20-3-0","c20-3-1","c20-3-3"]);
+const PHOTOS=new Set(["c17-2-0","c17-2-1","c17-2-2","c17-2-3","c18-0-0","c18-0-1","c18-0-2","c18-0-3","c25-2-0","c25-2-1","c25-2-2","c25-2-3","c20-0-0","c20-0-1","c20-0-2","c20-0-3","c20-1-0","c20-1-1","c20-1-2","c20-1-3","c20-2-0","c20-2-1","c20-2-2","c20-2-3","c20-3-0","c20-3-1","c20-3-2","c20-3-3"]);
 function hasPhotos(cid,pi){for(let k=0;k<4;k++)if(PHOTOS.has(`${cid}-${pi}-${k}`))return true;return false}
 function photoTag(cid,pi,si,cap){const k=`${cid}-${pi}-${si}`;if(!PHOTOS.has(k))return "";return `<button type="button" class="ph" data-src="img/${k}.jpg" data-cap="${esc(cap)}" aria-label="사진 크게 보기: ${esc(cap)}"><img src="img/${k}.jpg" alt="${esc(cap)}" loading="lazy"></button>`}
 document.addEventListener("click",e=>{const b=e.target.closest(".ph");if(!b)return;$("#lbImg").src=b.dataset.src;$("#lbImg").alt=b.dataset.cap;$("#lbCap").textContent=b.dataset.cap;$("#lb").hidden=false;$("#lbClose").focus()});
