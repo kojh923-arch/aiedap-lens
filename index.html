@@ -417,6 +417,21 @@ h1,h2,h3{font-weight:800}
 .motif .mc.unseen circle{fill-opacity:.7}
 .motif .mc.unseen:hover circle,.motif .mc.unseen:focus-visible circle{fill-opacity:.95}
 .proj[aria-pressed="true"] .pc{color:inherit;opacity:.9}
+
+/* ===== 틀(테두리) 강화: 큰 카드는 굵게, 안쪽 칸은 얇게 ===== */
+:root{--frame:#2B2160}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--frame:rgba(214,206,255,.55)}}
+:root[data-theme="dark"]{--frame:rgba(214,206,255,.55)}
+.card,.case,.proj,.dpcard,.how,.lv,.crowd,.cmpwrap,.askline,.liveempty,.tile,.role,.hero2,.motifwrap,.cs,.cmpchips button,.lbtn,.reveal,.site-in{border:2.5px solid var(--frame)}
+.stage,.meta div,.sit,.note,.opt,.tab,.ti,.refl .it,.reasons div,.othersdp div,.cmpcards div,.crowd .rs div,.tq,.lensans,.othersdp div,textarea,input[type=text]{border:2px solid var(--frame)}
+.btn,.btn.ghost,.hero2 .btn.ghost{border:2px solid var(--frame)}
+.stage .ph{border-bottom:2px solid var(--frame)}
+.tile .cover{border-bottom:2.5px solid var(--frame)}
+.motif .mc circle{stroke:var(--frame);stroke-width:2}
+.motif>g>circle{stroke:var(--frame);stroke-width:2}
+.lbar .track,.crowd .bar{border:2px solid var(--frame)}
+.case[aria-pressed="true"],.proj[aria-pressed="true"],.tab[aria-pressed="true"],.opt[aria-pressed="true"],.cs[aria-pressed="true"],.cmpchips button[aria-pressed="true"],.lbtn[aria-pressed="true"]{border-color:var(--frame)}
+.cmptbl th,.cmptbl td{border-bottom:1px solid var(--line)}
 </style>
 </head>
 <body>
