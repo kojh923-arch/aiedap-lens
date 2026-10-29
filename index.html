@@ -8,14 +8,14 @@
 <title>AI 수업 렌즈 탐험</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: 홈페이지형. 상단 사이트 헤더 + 홈(히어로·사례 고르기·렌즈·의사결정 입구) → 1장 사례 페이지 → 2장 의사결정 페이지 */
 :root{
   --bg:#F5F3FA; --surface:#FFFFFF; --soft:#ECE8F6; --fg:#2A2838; --muted:#6B6880; --accent:#7C6BD6; --accent-ink:#FFFFFF; --line:#E3DFF0;
   --l1:#DCE7FA; --l1i:#2F4A7D; --l2:#FBE3EA; --l2i:#8A3550; --l3:#DDF1E6; --l3i:#2D6A4A;
   --l4:#FDF0D3; --l4i:#7A5A12; --l5:#EADFF7; --l5i:#5B3F8C; --l6:#D9F0F2; --l6i:#2A6670;
-  --display:'Gowun Dodum','Noto Sans KR',sans-serif; --body:'Noto Sans KR',system-ui,sans-serif;
+  --display:'Manrope','IBM Plex Sans KR',system-ui,sans-serif; --body:'IBM Plex Sans KR',system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1B1A26; --surface:#26243A; --soft:#302D48; --fg:#EEEBF8; --muted:#A9A5C0; --accent:#A99BF0; --accent-ink:#1B1A26; --line:#38354F;
@@ -364,6 +364,60 @@ body.livemode .sitefoot{display:none}
   .tile .ty{font-size:38px}
   .lbar .num{min-width:78px;font-size:17px}
 }
+
+/* ===== 글래스 디자인 (시안 C) : 토큰·표면·글꼴만 덮어씀. 내용과 동작은 그대로 ===== */
+:root{--glass:rgba(255,255,255,.62);--glass2:rgba(255,255,255,.86);--edge:rgba(255,255,255,.9);--shadow:rgba(90,80,170,.28);--b1:#C9B8FF;--b2:#FFC6DA;--b3:#B7E8D2;--b4:#FFE3A8;--b5:#B5D4FF;
+  --bg:#EEF0FB;--soft:rgba(106,91,226,.08);--line:rgba(106,91,226,.16);--fg:#1D1B33;--muted:#605D80;--accent:#6A5BE2;--accent2:#8C6CF0;--accent-ink:#FFFFFF;--fgrad:linear-gradient(100deg,#6A5BE2,#E0629A 60%,#F2A24B)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:rgba(38,34,78,.55);--glass2:rgba(52,47,104,.8);--edge:rgba(255,255,255,.12);--shadow:rgba(0,0,0,.5);--b1:#4B3C9A;--b2:#7A3A5C;--b3:#2F6A55;--b4:#6B5A2A;--b5:#2F4F8F;
+  --bg:#100F22;--surface:#262250;--soft:rgba(169,155,240,.14);--line:rgba(255,255,255,.12);--fg:#F1EFFF;--muted:#B0ACD0;--accent:#A99BFF;--accent2:#7F8CFF;--accent-ink:#100F22;--fgrad:linear-gradient(100deg,#B7A9FF,#FF9CC8 60%,#FFC878);color-scheme:dark}}
+:root[data-theme="dark"]{--glass:rgba(38,34,78,.55);--glass2:rgba(52,47,104,.8);--edge:rgba(255,255,255,.12);--shadow:rgba(0,0,0,.5);--b1:#4B3C9A;--b2:#7A3A5C;--b3:#2F6A55;--b4:#6B5A2A;--b5:#2F4F8F;
+  --bg:#100F22;--surface:#262250;--soft:rgba(169,155,240,.14);--line:rgba(255,255,255,.12);--fg:#F1EFFF;--muted:#B0ACD0;--accent:#A99BFF;--accent2:#7F8CFF;--accent-ink:#100F22;--fgrad:linear-gradient(100deg,#B7A9FF,#FF9CC8 60%,#FFC878);color-scheme:dark}
+body{position:relative;isolation:isolate}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.8;background:radial-gradient(540px 540px at 0% 0%,var(--b1),transparent 70%),radial-gradient(480px 480px at 100% 10%,var(--b2),transparent 70%),radial-gradient(440px 440px at 25% 100%,var(--b3),transparent 70%),radial-gradient(400px 400px at 100% 92%,var(--b5),transparent 70%)}
+h1,h2,h3,h4{letter-spacing:-.03em}
+h1,h2,h3{font-weight:800}
+.brand b,.tile .tp,.role .rv2,.stage .q,.proj .pn,.lbtn b,.lensq,.dpcard .dt,.tb b,.tn,.cmptbl thead th b,.cmpcards b,.crowd h4,.motifcap b,.sitefoot b,.cs b,.askline,.cmpq,.quote,.lbar>b,.reasons i,.crowd .rs i,.opt i,.dpcard .dn{font-weight:700}
+.tile .ty,.case .yr,.role .ry,.stage .L,.how .hn{font-weight:800;letter-spacing:-.04em}
+.brand b{font-weight:800;letter-spacing:-.02em}
+/* 유리 표면 */
+.card,.case,.proj,.dpcard,.how,.lv,.crowd,.cmpwrap,.askline,.cs,.cmpchips button,.liveempty{background:var(--glass);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--edge);box-shadow:0 22px 44px -30px var(--shadow)}
+.card{border-radius:30px}
+.case:hover,.dpcard:hover{box-shadow:0 30px 50px -26px var(--shadow)}
+.tile,.role,.lbtn,.reveal,.lensans{border:1px solid var(--edge)}
+.tile{border-radius:32px;box-shadow:0 22px 44px -30px var(--shadow)}
+.tile:hover{box-shadow:0 30px 50px -26px var(--shadow)}
+.tile .ty{font-size:52px}
+.tile .cover{border-radius:32px 32px 0 0}
+/* 상단 메뉴: 떠 있는 알약 */
+.site{background:none;border:0;padding:10px 16px 0}
+.site-in{max-width:1048px;padding:8px 10px 8px 18px;border-radius:99px;background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--edge);box-shadow:0 12px 30px -18px var(--shadow)}
+.menu a:hover{background:var(--soft)}
+.menu a[aria-current="page"]{background:var(--fg);color:var(--bg)}
+/* 히어로 */
+.hero2{margin-top:28px;border-radius:40px;background:radial-gradient(700px 420px at 92% 30%,rgba(122,102,238,.2),transparent 70%),radial-gradient(420px 280px at 0% 100%,rgba(244,169,192,.26),transparent 70%),var(--glass);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid var(--edge);box-shadow:0 30px 60px -34px var(--shadow)}
+.hero2 h1{font-size:clamp(40px,7.4vw,80px);line-height:1.1;letter-spacing:-.045em}
+.hero2 h1 span{background:var(--fgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow,.step{color:var(--accent)}
+/* 버튼 */
+.btn{background:linear-gradient(135deg,var(--accent2),var(--accent));color:var(--accent-ink);box-shadow:0 12px 26px -12px var(--accent);transition:transform .2s,box-shadow .2s}
+.btn:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 16px 30px -14px var(--accent)}
+.btn.ghost,.hero2 .btn.ghost{background:var(--glass);color:var(--fg);border:1px solid var(--edge);box-shadow:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn.ghost:hover:not(:disabled){box-shadow:0 14px 28px -16px var(--shadow)}
+/* 선택 상태 */
+.case[aria-pressed="true"],.proj[aria-pressed="true"],.tab[aria-pressed="true"],.opt[aria-pressed="true"],.cs[aria-pressed="true"],.cmpchips button[aria-pressed="true"],.chap[aria-selected="true"]{background:linear-gradient(135deg,var(--accent2),var(--accent));color:var(--accent-ink);border-color:transparent}
+/* 렌즈 그림 */
+.motifwrap{background:var(--glass);border:1px solid var(--edge);border-radius:34px;padding:18px 14px 12px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 26px 50px -32px var(--shadow)}
+.motif .mc circle{stroke:rgba(255,255,255,.75);stroke-width:1.5;filter:drop-shadow(0 12px 14px rgba(90,80,170,.22))}
+.motif>g>circle{filter:drop-shadow(0 8px 14px rgba(106,91,226,.35))}
+.motif text{font-family:var(--body);font-weight:600}
+.lbar .track i,.crowd .bar i{background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.cmpwrap{border-radius:24px}
+.sitefoot{border-top:1px solid var(--edge)}
+@media(max-width:600px){.site{padding:8px 12px 0}.site-in{border-radius:26px;padding:8px 12px}.hero2{border-radius:30px}.tile .ty{font-size:42px}}
+
+.motif .mc.unseen circle{fill-opacity:.7}
+.motif .mc.unseen:hover circle,.motif .mc.unseen:focus-visible circle{fill-opacity:.95}
+.proj[aria-pressed="true"] .pc{color:inherit;opacity:.9}
 </style>
 </head>
 <body>
@@ -379,13 +433,13 @@ body.livemode .sitefoot{display:none}
   <section class="hero2">
     <div>
       <div class="eyebrow">AI 융합수업 우수사례 · 사례 발표 2</div>
-      <h1>AI에게<br>어디까지 맡길까?</h1>
+      <h1>AI에게<br><span>어디까지</span> 맡길까?</h1>
       <p class="lead2">연구대회 4년, 네 번의 수업에서 운영한 16개 프로젝트를 여섯 가지 렌즈로 읽고, 수업 중 마주친 세 번의 선택에서 나라면 어떻게 할지 먼저 정해 봅니다.</p>
       <div class="cta"><button class="btn" data-route="ch1">사례 둘러보기</button><button class="btn ghost" data-route="ch2">의사결정 해보기</button><button class="btn ghost" data-route="ch3">내 카드·문서 받기</button></div>
       <div class="prog" id="prog" aria-live="polite"></div>
     </div>
     <div class="motifwrap"><svg class="motif" viewBox="0 0 420 420" role="img" aria-label="여섯 가지 렌즈: 교육적, 학습자, 기술적, 평가, 윤리적, 실행이 겹쳐진 그림">
-<g font-family="'Gowun Dodum','Noto Sans KR',sans-serif" font-size="17" text-anchor="middle">
+<g font-size="17" text-anchor="middle">
 <g class="mc" data-lens="exec" role="button" tabindex="0"><circle cx="272" cy="210" r="80" style="fill:var(--l6)" fill-opacity=".88"/><text x="326" y="215" style="fill:var(--l6i)">실행</text></g>
 <g class="mc" data-lens="eval" role="button" tabindex="0"><circle cx="241" cy="279" r="80" style="fill:var(--l4)" fill-opacity=".88"/><text x="268" y="338" style="fill:var(--l4i)">평가</text></g>
 <g class="mc" data-lens="tech" role="button" tabindex="0"><circle cx="179" cy="279" r="80" style="fill:var(--l3)" fill-opacity=".88"/><text x="152" y="338" style="fill:var(--l3i)">기술적</text></g>
