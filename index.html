@@ -6,16 +6,15 @@
 <meta name="theme-color" content="#F5F3FA">
 <meta name="description" content="연구대회 네 번의 AI 융합수업을 여섯 가지 렌즈와 세 번의 의사결정으로 살펴보는 연수 자료">
 <title>AI 수업 렌즈 탐험</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <style>
 /* Layout: 홈페이지형. 상단 사이트 헤더 + 홈(히어로·사례 고르기·렌즈·의사결정 입구) → 1장 사례 페이지 → 2장 의사결정 페이지 */
 :root{
   --bg:#F5F3FA; --surface:#FFFFFF; --soft:#ECE8F6; --fg:#2A2838; --muted:#6B6880; --accent:#7C6BD6; --accent-ink:#FFFFFF; --line:#E3DFF0;
   --l1:#DCE7FA; --l1i:#2F4A7D; --l2:#FBE3EA; --l2i:#8A3550; --l3:#DDF1E6; --l3i:#2D6A4A;
   --l4:#FDF0D3; --l4i:#7A5A12; --l5:#EADFF7; --l5i:#5B3F8C; --l6:#D9F0F2; --l6i:#2A6670;
-  --display:'Manrope','IBM Plex Sans KR',system-ui,sans-serif; --body:'IBM Plex Sans KR',system-ui,sans-serif;
+  --display:'Pretendard Variable',Pretendard,system-ui,-apple-system,sans-serif; --body:'Pretendard Variable',Pretendard,system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#1B1A26; --surface:#26243A; --soft:#302D48; --fg:#EEEBF8; --muted:#A9A5C0; --accent:#A99BF0; --accent-ink:#1B1A26; --line:#38354F;
@@ -1134,10 +1133,10 @@ async function renderLive(){
 /* ===================== 내 카드 이미지 ===================== */
 async function makeCardImage(){
   const out=$("#cardImg");out.innerHTML=`<span class="muted">이미지를 만드는 중...</span>`;
-  try{await Promise.all([document.fonts.load('700 28px "Noto Sans KR"'),document.fonts.load('400 28px "Noto Sans KR"'),document.fonts.load('40px "Gowun Dodum"')])}catch(e){}
+  try{await Promise.all([document.fonts.load('700 28px "Pretendard Variable"'),document.fonts.load('400 28px "Pretendard Variable"'),document.fonts.load('800 40px "Pretendard Variable"')])}catch(e){}
   const C={bg:"#F5F3FA",sf:"#FFFFFF",fg:"#2A2838",mu:"#6B6880",ac:"#7C6BD6",soft:"#ECE8F6",
     l:["#DCE7FA","#FBE3EA","#DDF1E6","#FDF0D3","#EADFF7","#D9F0F2"],li:["#2F4A7D","#8A3550","#2D6A4A","#7A5A12","#5B3F8C","#2A6670"]};
-  const FB='"Noto Sans KR",sans-serif',FD='"Gowun Dodum","Noto Sans KR",sans-serif';
+  const FB='"Pretendard Variable",Pretendard,sans-serif',FD=FB;
   const W=1080,P=72,IW=W-P*2-56;
   const cv=document.createElement("canvas"),x=cv.getContext("2d");
   const wrap=(t,font,maxW)=>{x.font=font;const out=[];String(t).split("\n").forEach(para=>{let line="";for(const ch of para){const tt=line+ch;if(x.measureText(tt).width>maxW&&line){out.push(line.trimEnd());line=ch===" "?"":ch}else line=tt}out.push(line)});return out};
@@ -1153,7 +1152,7 @@ async function makeCardImage(){
     if(draw){LENSES.forEach((l,i)=>{x.globalAlpha=ST.seen[l.id]?.95:.3;x.fillStyle=C.l[l.c-1];x.beginPath();x.arc(cx+O[i][0]*R,cy+O[i][1]*R,R,0,7);x.fill()});x.globalAlpha=1;x.fillStyle=C.sf;x.beginPath();x.arc(cx,cy,20,0,7);x.fill()}
     if(draw){x.fillStyle=C.ac;x.font=`700 24px ${FB}`;x.fillText("AI 융합수업 · 나의 렌즈와 선택",P,y+24)}
     y+=50;
-    wrap("AI 융합수업,\n내 교실로 가져가기",`56px ${FD}`,W-P*2-200).forEach(t=>{if(draw){x.fillStyle=C.fg;x.font=`56px ${FD}`;x.fillText(t,P,y+56)}y+=72});
+    wrap("AI 융합수업,\n내 교실로 가져가기",`800 56px ${FD}`,W-P*2-200).forEach(t=>{if(draw){x.fillStyle=C.fg;x.font=`800 56px ${FD}`;x.fillText(t,P,y+56)}y+=72});
     if(draw){x.fillStyle=C.mu;x.font=`24px ${FB}`;x.fillText(new Date().toLocaleDateString("ko-KR")+" · 렌즈 "+LENSES.filter(l=>ST.seen[l.id]).length+"/6 · 선택 "+DP.filter((d,i)=>ST.dp[i]&&ST.dp[i].done).length+"/3",P,y+30)}
     y+=64;
     sections.forEach(sec=>{
